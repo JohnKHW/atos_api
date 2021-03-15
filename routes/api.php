@@ -4,6 +4,7 @@ use App\Http\Controllers\SupermarketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\RankController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -35,5 +36,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/cashiers/cal/{uuid}', [CashierController::class, 'cal_mark'])->name('cal');
+
+    Route::group(['prefix' => '/rank'], function () {
+        Route::group(['prefix' => '/users'], function () {
+            Route::get('/all', [RankController::class, 'usersAll']);
+            Route::get('/country', [RankController::class, 'usersCountry']);
+        });
+        Route::get('/countries/all', [RankController::class, 'countriesAll']);
+    });
 });
 Route::apiResource('supermarkets', SupermarketController::class)->only('show');
