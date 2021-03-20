@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ScoreStandard;
+use App\Http\Requests\Article\StoreCommentRequest;
+use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ScoreStandardController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,18 +36,20 @@ class ScoreStandardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
-        //
+        $comment = Comment::create($request->validated());
+
+        return response($comment, 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ScoreStandard  $scoreStandard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ScoreStandard $scoreStandard)
+    public function show(Comment $comment)
     {
         //
     }
@@ -52,10 +57,10 @@ class ScoreStandardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ScoreStandard  $scoreStandard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ScoreStandard $scoreStandard)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +69,10 @@ class ScoreStandardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ScoreStandard  $scoreStandard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ScoreStandard $scoreStandard)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,11 +80,16 @@ class ScoreStandardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ScoreStandard  $scoreStandard
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ScoreStandard $scoreStandard)
+    public function destroy(Comment $comment)
     {
-        //
+        $article_owner = $comment->article->user_id;
+        if (Auth::id() == $comment->user_id || Auth::id() == $article_owner) {
+            $comment->delete();
+            return response('delete success', 200);
+        }
+        return response('delete failure', 403);
     }
 }

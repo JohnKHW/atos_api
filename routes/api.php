@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SupermarketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RankController;
 use App\Http\Controllers\UserController;
 
@@ -32,6 +34,8 @@ Route::post('/user/register', [UserController::class, 'test']);
 }); */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('/articles', ArticleController::class);
+    Route::apiResource('/comments', CommentController::class);
     Route::get('/user/all', [UserController::class, 'index']);
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/logout', [UserController::class, 'logout']);

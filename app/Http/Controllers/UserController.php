@@ -70,7 +70,7 @@ class UserController extends Controller
         $response = [
             'token' => $token,
         ];
-        return response($response, 201);
+        return response($response, 200);
     }
 
     public function logout(Request $request)
@@ -78,7 +78,7 @@ class UserController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response([
             'message' => 'Token deleted successfully!',
-        ], 201);
+        ], 200);
     }
     /**
      * Display the specified resource.
