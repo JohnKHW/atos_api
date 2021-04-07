@@ -22,10 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_lock')->default(false);
             $table->rememberToken();
-            $table->unsignedBigInteger('country_id')->default(1);
             $table->bigInteger('net_points')->default(0);
             $table->timestamps();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreignId('country_id')->default(1)->references('id')->on('countries')->constrainted();
+            $table->foreignId('role_id')->default(1)->references('id')->on('roles')->constrainted();
         });
     }
 

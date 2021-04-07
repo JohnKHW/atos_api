@@ -18,8 +18,8 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
-            $table->boolean('isReply');
-            $table->boolean('isHidden');
+            $table->boolean('isReply')->default(true);
+            $table->boolean('isHidden')->default(false);
             $table->timestamps();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });

@@ -25,6 +25,8 @@ Vue.use(IconsPlugin)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-navigation', require('./components/admin/AdminNavigation.vue').default);
 
+Vue.component('article-index', require('./components/articles/Index.vue').default);
+
 Vue.component('supermarket-index', require('./components/supermarkets/Index.vue').default);
 Vue.component('supermarket-form', require('./components/supermarkets/Form.vue').default);
 

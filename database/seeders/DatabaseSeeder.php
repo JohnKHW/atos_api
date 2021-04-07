@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             [
                 RegionSeeder::class,
                 CountrySeeder::class,
+                RoleSeeder::class,
                 UserSeeder::class,
+                ArticleSeeder::class,
                 FoodTypeSeeder::class,
                 FoodSeed::class,
                 SupermarketSeeder::class,

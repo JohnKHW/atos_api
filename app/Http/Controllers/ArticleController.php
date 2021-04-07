@@ -16,7 +16,21 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return response(Article::all(), 200);
+        $articles = Article::with('owner:id,name')->get();
+        return view(
+            'admin.articles.index',
+            compact('articles')
+        );
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex()
+    {
+        return response(Article::with('owner:id,name')->get(), 200);
     }
 
     /**
@@ -70,7 +84,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $article->comments;
+        return view(
+            'admin.articles.edit',
+            compact('article')
+        );
     }
 
     /**

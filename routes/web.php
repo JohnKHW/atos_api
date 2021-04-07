@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\SupermarketController;
 use App\Http\Controllers\CountryController;
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/supermarkets', SupermarketController::class)->except(['show']);
         Route::resource('/countries', CountryController::class);
         Route::resource('/food', FoodController::class);
+        Route::resource('/articles', ArticleController::class);
     });
 
     Route::resource('/cashiers', CashierController::class);

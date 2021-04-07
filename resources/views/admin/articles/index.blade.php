@@ -1,9 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
-<div class="container">
-    <b-row>
-        <admin-navigation />
-    </b-row>
-</div>
+@section('sub-content')
+<article-index :items="{{ $articles }}"></article-index>
 @endsection
