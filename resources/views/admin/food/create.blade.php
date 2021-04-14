@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('sub-content')
-<food-form mode="create" :types="{{ $types }}" :countries="{{ $countries }}"></food-form>
+<food-form mode="create" :points="{{ $points }}" :countries="{{ $countries }}"></food-form>
 @endsection

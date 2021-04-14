@@ -10,6 +10,7 @@ use App\Http\Controllers\CashierController;
 use App\Http\Controllers\SupermarketController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\PointController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/countries', CountryController::class);
         Route::resource('/food', FoodController::class);
         Route::resource('/articles', ArticleController::class);
+        Route::resource('/points', PointController::class);
     });
 
     Route::resource('/cashiers', CashierController::class);

@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'country_id', 'type_id'];
+    protected $fillable = ['name', 'country_id', 'point_id'];
 
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
 
-    public function food_type()
+    public function point()
     {
-        return $this->belongsTo(FoodType::class, 'type_id');
+        return $this->belongsTo(Point::class, 'point_id');
     }
 
     public function supermarkets()

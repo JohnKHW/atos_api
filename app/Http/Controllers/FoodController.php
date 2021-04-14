@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\Food\StoreFoodRequest;
 use App\Models\Country;
 use App\Models\Food;
-use App\Models\FoodType;
+use App\Models\Point;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -17,7 +17,8 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $food = Food::with('country:id,name', 'food_type:id,name,net_pts')->get();
+        $food = Food::with('country:id,name', 'point:id,name')->get();
+        error_log($food);
         return view(
             'admin.food.index',
             compact('food')
@@ -32,10 +33,10 @@ class FoodController extends Controller
     public function create()
     {
         $countries = Country::all(['id', 'name']);
-        $types = FoodType::all(['id', 'name', 'net_pts']);
+        $points = Point::all(['id', 'name', 'mark'])->where('selectable', true);
         return view(
             'admin.food.create',
-            compact('countries', 'types')
+            compact('countries', 'points')
         );
     }
 
@@ -76,10 +77,10 @@ class FoodController extends Controller
     public function edit(Food $food)
     {
         $countries = Country::all(['id', 'name']);
-        $types = FoodType::all(['id', 'name', 'net_pts']);
+        $points = Point::all()->where('selectable', true);
         return view(
             'admin.food.edit',
-            compact('food', 'countries', 'types')
+            compact('food', 'countries', 'points')
         );
     }
 
@@ -94,7 +95,7 @@ class FoodController extends Controller
     {
         $food->name = $request->name;
         $food->country_id = $request->country_id;
-        $food->type_id = $request->type_id;
+        $food->point_id = $request->point_id;
         $food->save();
     }
 

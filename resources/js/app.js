@@ -36,6 +36,9 @@ Vue.component('country-form', require('./components/countries/Form.vue').default
 Vue.component('food-index', require('./components/food/Index.vue').default);
 Vue.component('food-form', require('./components/food/Form.vue').default);
 
+Vue.component('point-index', require('./components/points/Index.vue').default);
+Vue.component('point-form', require('./components/points/Form.vue').default);
+
 Vue.component('cashier-index', require('./components/cashiers/Index.vue').default);
 
 

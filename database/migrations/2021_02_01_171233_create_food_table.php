@@ -16,11 +16,9 @@ class CreateFoodTable extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('country_id')->default(1);
-            $table->unsignedBigInteger('type_id')->default(1);
             $table->timestamps();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreign('type_id')->references('id')->on('food_types')->onDelete('cascade');
+            $table->foreignId('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreignId('point_id')->references('id')->on('points')->onDelete('cascade');
         });
     }
 

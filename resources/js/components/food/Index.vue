@@ -31,8 +31,7 @@ export default {
             fields: [
                 { key: 'id', label: 'ID', sortable: true },
                 { key: 'name', label: 'Supermarket', sortable: true },
-                { key: 'food_type.name', label: 'Type', sortable: true },
-                { key: 'food_type.net_pts', label: 'Net Points', sortable: true },
+                { key: 'point.name', label: 'Type', sortable: true },
                 { key: 'country.name', label: 'Country', sortable: true },
                 { key: 'created_at', label: 'Created', sortable: true },
                 { key: 'updated_at', label: 'Updated', sortable: true },

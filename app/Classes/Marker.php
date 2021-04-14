@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use App\Models\Point;
 use Illuminate\Support\Facades\Auth;
 
 class Marker
@@ -19,12 +20,12 @@ class Marker
 
     public static function getFoodMark($food)
     {
-        return self::getCountryMark($food->country) + self::getFoodTypeMark($food->food_type);
+        return self::getCountryMark($food->country) + self::getPointMark($food->point);
     }
-
-    public static function getFoodTypeMark($foodType)
+    //Getting the type of the Food Type
+    public static function getPointMark($point)
     {
-        return $foodType->net_pts;
+        return $point->mark;
     }
 
     public static function getCountryMark($country)
@@ -33,10 +34,10 @@ class Marker
         //The current marks are hard code
         if ($user_country->id == $country->id) {
             // Same country
-            return 2;
+            return Point::find(2);
         } else if ($user_country->region->id == $country->region->id) {
             // Same Region
-            return 1;
+            return Point::find(1);
         }
         return 0;
     }

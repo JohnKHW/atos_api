@@ -5,7 +5,7 @@
             <b-nav-item to="/admin/countries" >Countries</b-nav-item>
             <b-nav-item to="/admin/supermarkets" >Supermarkets</b-nav-item>
             <b-nav-item to="/admin/food" >Food</b-nav-item>
-            <b-nav-item to="/admin/netpoints" >Netpoints</b-nav-item>
+            <b-nav-item to="/admin/points" >Points</b-nav-item>
             <b-nav-item to="/admin/articles" >Articles</b-nav-item>
         </b-nav>
     </b-col>

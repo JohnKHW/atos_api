@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
                 RoleSeeder::class,
                 UserSeeder::class,
                 ArticleSeeder::class,
-                FoodTypeSeeder::class,
+                PointSeeder::class,
                 FoodSeed::class,
                 SupermarketSeeder::class,
             ]

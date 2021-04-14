@@ -22,14 +22,13 @@
                 ></b-form-select>
             </b-form-group>
 
-            <b-form-group id="type" label="Food Type" label-for="type">
+            <b-form-group id="point" label="Food Type" label-for="point">
                 <b-form-select
-                    v-model="type"
-                    :options="types"
+                    v-model="point"
+                    :options="points"
                     class="mb-3"
                     value-field="id"
                     text-field="name"
-                    disabled-field="notEnabled"
                 ></b-form-select>
             </b-form-group>
 
@@ -41,7 +40,7 @@
 export default {
     props: {
         items: { type: Object },
-        types: { type: Array },
+        points: { type: Array },
         countries: { type: Array },
         mode: { type: String },
     },
@@ -50,21 +49,21 @@ export default {
             id: 0,
             name: '',
             country: '',
-            type: '',
+            point: null,
         }
     },
     mounted() {
         this.id = this.items ? this.items.id: ''
         this.name = this.items ? this.items.name: ''
         this.country = this.items ? this.items.country_id: ''
-        this.type = this.items ? this.items.type_id: ''
+        this.point = this.items ? this.items.point_id: null
     },
     methods: { 
         async submit(){
             let submition = {
                 name: this.name,
                 country_id: this.country,
-                type_id: this.type,
+                point_id: this.point,
             };
             if(this.mode === 'create') {
                 await axios.post('/admin/food', submition)
@@ -75,6 +74,9 @@ export default {
             else {
                 axios.put(`/admin/food/${this.id}`, submition)
             }
+        },
+        getName(point){
+            return `${ point.name } (${ point.mark}) `
         },
     },
 }
