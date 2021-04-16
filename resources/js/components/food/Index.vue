@@ -30,7 +30,8 @@ export default {
         return {
             fields: [
                 { key: 'id', label: 'ID', sortable: true },
-                { key: 'name', label: 'Supermarket', sortable: true },
+                { key: 'name', label: 'Food', sortable: true },
+                { key: 'score', label: 'Base Score', sortable: true },
                 { key: 'point.name', label: 'Type', sortable: true },
                 { key: 'country.name', label: 'Country', sortable: true },
                 { key: 'created_at', label: 'Created', sortable: true },

@@ -22,6 +22,14 @@
                 ></b-form-select>
             </b-form-group>
 
+            <b-form-group id="score" label="Score" label-for="score">
+                <b-form-input
+                    id="score"
+                    v-model="score"
+                    type="number"
+                ></b-form-input>
+            </b-form-group>
+
             <b-form-group id="point" label="Food Type" label-for="point">
                 <b-form-select
                     v-model="point"
@@ -49,6 +57,7 @@ export default {
             id: 0,
             name: '',
             country: '',
+            score: null,
             point: null,
         }
     },
@@ -56,6 +65,7 @@ export default {
         this.id = this.items ? this.items.id: ''
         this.name = this.items ? this.items.name: ''
         this.country = this.items ? this.items.country_id: ''
+        this.score = this.items ? this.items.score: null
         this.point = this.items ? this.items.point_id: null
     },
     methods: { 
@@ -63,6 +73,7 @@ export default {
             let submition = {
                 name: this.name,
                 country_id: this.country,
+                score: this.score,
                 point_id: this.point,
             };
             if(this.mode === 'create') {

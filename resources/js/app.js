@@ -27,6 +27,9 @@ Vue.component('admin-navigation', require('./components/admin/AdminNavigation.vu
 
 Vue.component('article-index', require('./components/articles/Index.vue').default);
 
+Vue.component('user-index', require('./components/users/Index.vue').default);
+Vue.component('user-form', require('./components/users/Form.vue').default);
+
 Vue.component('supermarket-index', require('./components/supermarkets/Index.vue').default);
 Vue.component('supermarket-form', require('./components/supermarkets/Form.vue').default);
 

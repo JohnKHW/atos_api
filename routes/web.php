@@ -11,6 +11,7 @@ use App\Http\Controllers\SupermarketController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\UserController;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/supermarkets', SupermarketController::class)->except(['show']);
         Route::resource('/countries', CountryController::class);
         Route::resource('/food', FoodController::class);
+        Route::resource('/users', UserController::class);
         Route::resource('/articles', ArticleController::class);
         Route::resource('/points', PointController::class);
     });

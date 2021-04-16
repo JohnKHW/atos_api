@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +19,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
-        //
+        $users = User::with(['country:id,name', 'role:id,name'])->get();
+        return view(
+            'admin.users.index',
+            compact('users')
+        );
     }
 
     /**
@@ -94,24 +99,39 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $countries = Country::all();
+        $roles = Role::all();
+
+        return view(
+            'admin.users.edit',
+            compact('user', 'roles', 'countries')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if ($user->password != '') {
+            $user->password = Hash::make($request->password);
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
+        $user->country_id = $request->country_id;
+        $user->score = $request->score;
+
+        $user->save();
     }
 
     /**

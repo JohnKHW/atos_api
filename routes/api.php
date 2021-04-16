@@ -37,7 +37,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('/articles', ArticleController::class)->except('index');
     Route::get('/articles', [ArticleController::class, 'apiIndex']);
     Route::apiResource('/comments', CommentController::class);
-    Route::get('/user/all', [UserController::class, 'index']);
     Route::get('/user/{id}', [UserController::class, 'show']);
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/cashiers/cal/{uuid}', [CashierController::class, 'cal_mark'])->name('cal');

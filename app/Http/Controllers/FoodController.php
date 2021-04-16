@@ -94,6 +94,7 @@ class FoodController extends Controller
     public function update(Request $request, Food $food)
     {
         $food->name = $request->name;
+        $food->score = $request->score;
         $food->country_id = $request->country_id;
         $food->point_id = $request->point_id;
         $food->save();
