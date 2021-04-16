@@ -20,7 +20,7 @@ class Marker
 
     public static function getFoodMark($food)
     {
-        return self::getCountryMark($food->country) + self::getPointMark($food->point) + $food->score;
+        return $food->score + self::getCountryMark($food->country) + self::getPointMark($food->point);
     }
     //Getting the type of the Food Type
     public static function getPointMark($point)
@@ -34,10 +34,10 @@ class Marker
         //The current marks are hard code
         if ($user_country->id == $country->id) {
             // Same country
-            return Point::find(2);
+            return Point::find(2)->mark;
         } else if ($user_country->region->id == $country->region->id) {
             // Same Region
-            return Point::find(1);
+            return Point::find(1)->mark;
         }
         return 0;
     }

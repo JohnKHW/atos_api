@@ -19,7 +19,7 @@ class CreateFoodTable extends Migration
             $table->integer('score')->default(0);
             $table->timestamps();
             $table->foreignId('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreignId('point_id')->references('id')->on('points')->onDelete('cascade');
+            $table->foreignId('point_id')->default(3)->references('id')->on('points')->onDelete('cascade');
         });
     }
 

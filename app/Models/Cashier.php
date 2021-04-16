@@ -9,7 +9,7 @@ class Cashier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['food', 'token'];
+    protected $fillable = ['supermarket_food_id', 'token'];
 
     public function supermarket_food()
     {
@@ -22,6 +22,5 @@ class Cashier extends Model
             )
             ->as('cashier_product')
             ->withPivot('amount');
-        //->with('food', 'supermarket');
     }
 }

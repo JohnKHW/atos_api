@@ -6,15 +6,10 @@ use App\Classes\Marker;
 use App\Http\Requests\Cashier\StoreCashierRequest;
 use App\Models\Cashier;
 use App\Models\Supermarket;
-use App\Models\SupermarketFood;
 use App\Models\User;
 use Faker\Provider\Uuid;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CashierController extends Controller
@@ -51,6 +46,7 @@ class CashierController extends Controller
      */
     public function store(StoreCashierRequest $request)
     {
+        error_log($request);
         $cashier = Cashier::create();
         $cashier->token = Uuid::uuid();
         $cashier->save();

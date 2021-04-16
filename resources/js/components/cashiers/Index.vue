@@ -42,9 +42,14 @@ export default {
             .then((res) => {
                 this.food = res.data.food.map((f) => {
                     f.amount = ''
+                    f.supermarket_food_id = f.supermarket_food.id
+                    delete f.supermarket_food
+                    delete f.id
                     return f
                 })
             })
+            console.log(this.food);
+
         },
 
         async submit() {
@@ -52,10 +57,7 @@ export default {
                 food: this.food
                 .filter((f) => f.amount > 0)
                 .map((f) => {
-                    f.supermarket_food_id = f.supermarket_food.id
-                    delete f.id
                     delete f.name
-                    delete f.supermarket_food
                     return f
                 }),
             })
