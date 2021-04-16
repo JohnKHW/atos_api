@@ -20,7 +20,7 @@ class Marker
 
     public static function getFoodMark($food)
     {
-        return self::getCountryMark($food->country) + self::getPointMark($food->point);
+        return self::getCountryMark($food->country) + self::getPointMark($food->point) + $food->score;
     }
     //Getting the type of the Food Type
     public static function getPointMark($point)
