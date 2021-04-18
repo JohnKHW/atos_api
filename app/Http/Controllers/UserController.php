@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreUserRequest;
 use App\Models\Country;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function whomi()
+    {
+        $user = Auth::user();
+        $user->country;
+        return $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +51,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* $validated = $request->validate([
+            'username' => ['required', 'string', 'max:24', 'unique:users'],
+            'name' => ['required', 'string', 'max:24'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:1', 'confirmed'],
+        ]); */
+
+        return User::create([
+            'name' => $request['name'],
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
     }
 
     public function login(Request $request)
@@ -74,6 +93,7 @@ class UserController extends Controller
 
         $response = [
             'token' => $token,
+            'user' => $user,
         ];
         return response($response, 200);
     }
