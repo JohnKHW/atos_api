@@ -19,21 +19,21 @@ class FoodSeed extends Seeder
         $data[] = [
             'name' => 'Apple',
             'country_id' => 1,
-            'point_id' => 3,
+            'type_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString(),
         ];
         $data[] = [
             'name' => 'Banana',
             'country_id' => 1,
-            'point_id' => 3,
+            'type_id' => 1,
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString(),
         ];
         $data[] = [
             'name' => 'Beef',
             'country_id' => 2,
-            'point_id' => 4,
+            'type_id' => 3,
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString(),
         ];
