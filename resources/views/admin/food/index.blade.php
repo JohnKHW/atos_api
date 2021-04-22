@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
 @section('sub-content')
-<food-index :items="{{ $food }}"></food-index>
+<food-index :items="{{ $food->toJson() }}"></food-index> 
+
 @endsection

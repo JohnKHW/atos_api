@@ -16,6 +16,7 @@ class CreateFoodTable extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('system_name')->default('');
             $table->integer('score')->default(0);
             $table->timestamps();
             $table->foreignId('country_id')->references('id')->on('countries')->onDelete('cascade');

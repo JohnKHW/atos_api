@@ -15,7 +15,7 @@ class PointController extends Controller
      */
     public function index()
     {
-        $points = Point::all();
+        $points = Point::paginate(10);
         return view(
             'admin.points.index',
             compact('points')

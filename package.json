@@ -13,10 +13,11 @@
         "axios": "^0.21",
         "babel-eslint": "^10.1.0",
         "bootstrap": "^4.0.0",
-        "eslint": "^7.19.0",
+        "eslint": "^7.24.0",
         "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-loader": "^4.0.2",
         "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-vue": "^7.5.0",
+        "eslint-plugin-vue": "^7.9.0",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -32,6 +33,8 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.21.2",
+        "eslint-config-prettier": "^8.2.0",
+        "laravel-vue-pagination": "^2.3.1",
         "vue-moment": "^4.1.0"
     }
 }

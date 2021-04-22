@@ -67,7 +67,7 @@ class CashierController extends Controller
     {
         $cashier = Cashier::where([
             ['token', $uuid],
-            ['active', false]
+            //['active', false]
         ])->first();
         if ($cashier == null) {
             return response([
@@ -86,6 +86,7 @@ class CashierController extends Controller
         return response([
             'message' => 'Success',
             'score' => $mark,
+            'supermarket_food' => $cashier->supermarket_food,
         ], 200);
     }
 

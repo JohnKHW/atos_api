@@ -19,7 +19,7 @@ class SupermarketController extends Controller
     public function index()
     {
         // get all supermarkets
-        $supermarkets = Supermarket::with('country:id,name')->get();
+        $supermarkets = Supermarket::with('country:id,name')->paginate(10);
         return view(
             'admin.supermarkets.index',
             compact('supermarkets')

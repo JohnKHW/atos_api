@@ -17,8 +17,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $food = Food::with('country:id,name', 'point:id,name')->get();
-        error_log($food);
+        $food = Food::with('country:id,name', 'point:id,name')->paginate(10);
         return view(
             'admin.food.index',
             compact('food')

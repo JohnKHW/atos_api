@@ -9,6 +9,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\SupermarketController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/users', UserController::class);
         Route::resource('/articles', ArticleController::class);
         Route::resource('/points', PointController::class);
+        Route::resource('/coupons', CouponController::class);
     });
 
     Route::resource('/cashiers', CashierController::class);

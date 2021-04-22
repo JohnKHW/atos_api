@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests\Article;
 
-use Doctrine\Inflector\Rules\English\Rules;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreArticleRequest extends FormRequest
 {
@@ -28,8 +26,8 @@ class StoreArticleRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
-            'isReply' => 'required',
-            'isHidden' => 'required',
+            'isReply' => 'nullable',
+            'isHidden' => 'nullable',
         ];
     }
 }

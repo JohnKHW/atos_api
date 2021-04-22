@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('owner:id,name')->get();
+        $articles = Article::with('owner:id,name')->paginate(10);
         return view(
             'admin.articles.index',
             compact('articles')
@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     public function apiIndex()
     {
-        return response(Article::with('owner:id,name')->get(), 200);
+        return response(Article::with('owner:id,name')->paginate(), 200);
     }
 
     /**

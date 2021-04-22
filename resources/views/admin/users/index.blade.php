@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
 @section('sub-content')
-<user-index :items="{{ $users }}"></user-index>
+<user-index :items="{{ $users->toJson() }}"></user-index>
 
 @endsection
