@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Admin\Food\StoreFoodRequest;
+use App\Http\Requests\Admin\Food\UpdateFoodRequest;
 use App\Models\Country;
 use App\Models\Food;
 use App\Models\Point;
@@ -17,7 +18,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $food = Food::with('country:id,name', 'point:id,name')->paginate(10);
+        $food = Food::with('country:id,name', 'point:id,name')->orderBy('id')->paginate(10);
         return view(
             'admin.food.index',
             compact('food')
@@ -90,13 +91,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Food $food)
+    public function update(UpdateFoodRequest $request, Food $food)
     {
-        $food->name = $request->name;
-        $food->score = $request->score;
-        $food->country_id = $request->country_id;
-        $food->point_id = $request->point_id;
-        $food->save();
+        $food->update($request->all());
     }
 
     /**

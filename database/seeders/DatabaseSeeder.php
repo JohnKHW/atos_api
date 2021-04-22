@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 PointSeeder::class,
                 FoodSeed::class,
                 SupermarketSeeder::class,
+                CouponSeeder::class,
             ]
         );
     }

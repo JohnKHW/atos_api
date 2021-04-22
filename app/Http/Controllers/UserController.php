@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserCoupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

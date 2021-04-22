@@ -20,7 +20,7 @@ class CreateCouponsTable extends Migration
             $table->integer('offer_price');
             $table->string('description');
             $table->boolean('available')->default(true);
-            $table->integer('alloted_time')->default(30);
+            $table->integer('allotted_time')->default(30);
             $table->timestamps();
         });
     }

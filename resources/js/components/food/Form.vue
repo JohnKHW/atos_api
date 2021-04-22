@@ -10,6 +10,14 @@
                 ></b-form-input>
             </b-form-group>
 
+             <b-form-group id="system_name" label="System Name" label-for="system_name">
+                <b-form-input
+                    id="system_name"
+                    v-model="system_name"
+                    type="text"
+                    trim
+                ></b-form-input>
+            </b-form-group>
 
             <b-form-group id="country" label="Country" label-for="country">
                 <b-form-select
@@ -48,7 +56,7 @@
 export default {
     props: {
         items: { type: Object },
-        points: { type: Array },
+        points: { type: Object },
         countries: { type: Array },
         mode: { type: String },
     },
@@ -56,6 +64,7 @@ export default {
         return {
             id: 0,
             name: '',
+            system_name: '',
             country: '',
             score: null,
             point: null,
@@ -64,6 +73,7 @@ export default {
     mounted() {
         this.id = this.items ? this.items.id: ''
         this.name = this.items ? this.items.name: ''
+        this.system_name = this.items ? this.items.system_name: ''
         this.country = this.items ? this.items.country_id: ''
         this.score = this.items ? this.items.score: null
         this.point = this.items ? this.items.point_id: null
@@ -72,6 +82,7 @@ export default {
         async submit(){
             let submition = {
                 name: this.name,
+                system_name: this.system_name,
                 country_id: this.country,
                 score: this.score,
                 point_id: this.point,

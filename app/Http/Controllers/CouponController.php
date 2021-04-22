@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\Coupon\StoreCouponRequest;
+use App\Http\Requests\Admin\Coupon\UpdateCouponRequest;
 use App\Models\Coupon;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CouponController extends Controller
 {
@@ -14,7 +19,25 @@ class CouponController extends Controller
      */
     public function index()
     {
-        //
+        $coupons = Coupon::paginate(10);
+        return view(
+            'admin.coupons.index',
+            compact('coupons')
+        );
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex()
+    {
+        return response([
+            Coupon::where([
+                ['available', true],
+            ])->get()
+        ], 200);
     }
 
     /**
@@ -24,7 +47,9 @@ class CouponController extends Controller
      */
     public function create()
     {
-        //
+        return view(
+            'admin.coupons.create',
+        );
     }
 
     /**
@@ -33,9 +58,13 @@ class CouponController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCouponRequest $request)
     {
-        //
+        $coupon = Coupon::create($request->validated());
+
+        return response([
+            'url' => route('admin.coupons.edit', $coupon),
+        ], 200);
     }
 
     /**
@@ -57,7 +86,10 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        //
+        return view(
+            'admin.coupons.edit',
+            compact('coupon')
+        );
     }
 
     /**
@@ -67,9 +99,9 @@ class CouponController extends Controller
      * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coupon $coupon)
+    public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
-        //
+        $coupon->update($request->all());
     }
 
     /**
@@ -80,6 +112,6 @@ class CouponController extends Controller
      */
     public function destroy(Coupon $coupon)
     {
-        //
+        $coupon->delete();
     }
 }

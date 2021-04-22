@@ -25,9 +25,10 @@ class StoreFoodRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'score' => 'required',
-            'country_id' => 'required',
-            'point_id' => 'required',
+            'system_name' => ['required'],
+            'score' => ['required', 'integer'],
+            'country_id' => ['required', 'integer'],
+            'point_id' => ['required', 'integer'],
         ];
     }
 }

@@ -61,8 +61,11 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class, 'country_id');
     }
 
-    public function behaviors()
+    public function coupons()
     {
-        return $this->belongsToMany(Behavior::class, 'user_bahavior', 'user_id', 'behavior_id');
+        return $this
+            ->belongsToMany(Coupon::class, 'user_coupon', 'user_id', 'coupon_id')
+            ->withPivot('expires', 'active')
+            ->as('supermarket_food');
     }
 }

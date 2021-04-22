@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'score', 'country_id',  'point_id'];
+    protected $fillable = ['name', 'system_name', 'score', 'country_id',  'point_id'];
 
     public function country()
     {

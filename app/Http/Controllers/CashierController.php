@@ -46,7 +46,6 @@ class CashierController extends Controller
      */
     public function store(StoreCashierRequest $request)
     {
-        error_log($request);
         $cashier = Cashier::create();
         $cashier->token = Uuid::uuid();
         $cashier->save();
@@ -67,7 +66,7 @@ class CashierController extends Controller
     {
         $cashier = Cashier::where([
             ['token', $uuid],
-            //['active', false]
+            ['active', false]
         ])->first();
         if ($cashier == null) {
             return response([

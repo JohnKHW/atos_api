@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\RankController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserCouponController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -41,6 +43,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('/comments', CommentController::class);
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/cashiers/cal/{uuid}', [CashierController::class, 'cal_mark'])->name('cal');
+
+    Route::group(['prefix' => '/coupons'], function () {
+        Route::get('/', [CouponContruoller::class, 'apiIndex']);
+        Route::get('/all', [UserCouponController::class, 'index']);
+        Route::get('/redeem/{coupon}', [UserCouponController::class, 'redeem']);
+        Route::get('/use/{userCoupon}', [UserCouponController::class, 'use']);
+    });
 
     Route::group(['prefix' => '/rank'], function () {
         Route::group(['prefix' => '/users'], function () {
