@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         return $this
             ->belongsToMany(Coupon::class, 'user_coupon', 'user_id', 'coupon_id')
-            ->withPivot('expires', 'active')
-            ->as('supermarket_food');
+            ->withPivot('expires', 'active', 'id')
+            ->as('user_coupon');
     }
 }

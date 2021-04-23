@@ -9,6 +9,7 @@ use App\Http\Controllers\CashierController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\RankController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCouponController;
 use Illuminate\Support\Facades\Auth;
@@ -38,14 +39,21 @@ Route::post('/user/register', [UserController::class, 'store']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', [UserController::class, 'whomi']);
+    Route::get('/logout', [UserController::class, 'logout']);
+
     Route::apiResource('/articles', ArticleController::class)->except('index');
     Route::get('/articles', [ArticleController::class, 'apiIndex']);
     Route::apiResource('/comments', CommentController::class);
-    Route::get('/logout', [UserController::class, 'logout']);
+
     Route::get('/cashiers/cal/{uuid}', [CashierController::class, 'cal_mark'])->name('cal');
 
+    Route::group(['prefix' => '/scan'], function () {
+        Route::get('/qrcode/{uuid}', [ScanController::class, 'qrcode']);
+        Route::post('/recognize', [ScanController::class, 'recognize']);
+    });
+
     Route::group(['prefix' => '/coupons'], function () {
-        Route::get('/', [CouponContruoller::class, 'apiIndex']);
+        Route::get('/', [CouponController::class, 'apiIndex']);
         Route::get('/all', [UserCouponController::class, 'index']);
         Route::get('/redeem/{coupon}', [UserCouponController::class, 'redeem']);
         Route::get('/use/{userCoupon}', [UserCouponController::class, 'use']);

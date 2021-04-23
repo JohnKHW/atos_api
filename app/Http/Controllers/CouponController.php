@@ -33,11 +33,12 @@ class CouponController extends Controller
      */
     public function apiIndex()
     {
-        return response([
+        return response(
             Coupon::where([
                 ['available', true],
-            ])->get()
-        ], 200);
+            ])->get(),
+            200
+        );
     }
 
     /**

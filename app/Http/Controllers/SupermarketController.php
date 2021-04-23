@@ -65,7 +65,16 @@ class SupermarketController extends Controller
     public function show(Supermarket $supermarket)
     {
         $supermarket->makeHidden(['created_at', 'updated_at', 'country_id']);
-        $supermarket->food->makeHidden(['created_at', 'updated_at', 'country_id', 'score', 'point_id']);
+        $supermarket
+            ->food
+            ->makeHidden([
+                'created_at',
+                'updated_at',
+                'country_id',
+                'score',
+                'point_id',
+                'system_name'
+            ]);
         $response = $supermarket;
         return response($response, 200);
     }
