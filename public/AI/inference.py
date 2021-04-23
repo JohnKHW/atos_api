@@ -126,7 +126,7 @@ if __name__ == "__main__":
     for i in range(5):
         temp = {
             "system_name": CLASSES[top5[-i-1]],
-            "age": result[0][top5[-i - 1]] * 100
+            # "percentage": result[0][top5[-i - 1]] * 100
         }
         output.append(temp)
     print(json.dumps(output))
