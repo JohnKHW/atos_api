@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     public function apiIndex()
     {
-        return response(Article::with('owner:id,name'), 200);
+        return response(Article::with('owner:id,name')->paginate(5), 200);
     }
 
     /**
