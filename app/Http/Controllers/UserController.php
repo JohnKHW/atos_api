@@ -58,13 +58,19 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:1', 'confirmed'],
         ]); */
-
-        return User::create([
+        $user = User::create([
             'name' => $request['name'],
             'username' => $request['username'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        $response = [
+            'token' => $token,
+            'user' => $user,
+        ];
+        return response($response, 200);
     }
 
     public function login(Request $request)

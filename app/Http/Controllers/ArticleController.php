@@ -30,7 +30,13 @@ class ArticleController extends Controller
      */
     public function apiIndex()
     {
-        return response(Article::with('owner:id,name')->paginate(5), 200);
+        return response(
+            Article::with('owner:id,name')
+                ->where('isHidden', false)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10),
+            200
+        );
     }
 
     /**
@@ -65,8 +71,31 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $article->comments;
+        $article->owner->makeHidden(
+            'is_lock',
+            'username',
+            'email',
+            'email_verified_at',
+            'created_at',
+            'updated_at',
+            'role_id',
+        );
+        $article->owner->country->makeHidden(
+            'created_at',
+            'updated_at',
+            'flag_path'
+        );
         $position = 1;
         foreach ($article->comments as $comment) {
+            $comment->user->makeHidden(
+                'is_lock',
+                'username',
+                'email',
+                'email_verified_at',
+                'created_at',
+                'updated_at',
+                'role_id',
+            );
             $comment->position = $position;
             $position++;
         }

@@ -33,6 +33,7 @@ class ScanController extends Controller
         $user = User::find(Auth::id());
         $user->net_points += $mark;
         $user->save();
+        error_log($mark);
 
         return response([
             'message' => 'Success',
@@ -53,9 +54,21 @@ class ScanController extends Controller
         $process = json_decode(shell_exec("py ./AI/inference.py --image " . $path));
         File::delete($path);
 
+
+
         $food = Food::where(['system_name' => $process[0]->system_name])
             ->orWhere(['system_name' => $process[1]->system_name])
             ->get();
-        return $food;
+
+        $mark = Marker::getFoodMark($food->first());
+
+        $user = User::find(Auth::id());
+        $user->net_points += $mark;
+        $user->save();
+
+        return response([
+            "food" => $food,
+            "mark" => $mark,
+        ], 200);
     }
 }

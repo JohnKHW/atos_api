@@ -35,17 +35,19 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    Route::group(['prefix' => '/admin'], function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin');
-        Route::resource('/supermarkets', SupermarketController::class)->except(['show']);
-        Route::resource('/countries', CountryController::class);
-        Route::resource('/food', FoodController::class);
-        Route::resource('/users', UserController::class);
-        Route::resource('/articles', ArticleController::class);
-        Route::resource('/points', PointController::class);
-        Route::resource('/coupons', CouponController::class);
-    });
+    Route::group(['middleware' => 'admin'], function () {
+        Route::group(['prefix' => '/admin'], function () {
+            Route::get('/', [AdminController::class, 'index'])->name('admin');
+            Route::resource('/supermarkets', SupermarketController::class)->except(['show']);
+            Route::resource('/countries', CountryController::class);
+            Route::resource('/food', FoodController::class);
+            Route::resource('/users', UserController::class);
+            Route::resource('/articles', ArticleController::class);
+            Route::resource('/points', PointController::class);
+            Route::resource('/coupons', CouponController::class);
+        });
 
-    Route::resource('/cashiers', CashierController::class);
+        Route::resource('/cashiers', CashierController::class);
+    });
     Route::get('/cashiers/cal/{uuid}', [CashierController::class, 'cal_mark'])->name('cal');
 });
